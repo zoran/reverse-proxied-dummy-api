@@ -30,7 +30,7 @@ In addition to the traefik dashboard, the container management portainer UI is a
 
 ### docker-compose
 
-Start everything. Ignore the `dummyapi was built` Warning.
+Start everything. Ignore the `dummyapi was built` warning.
 
 ```bash
 docker-compose up
@@ -40,7 +40,7 @@ docker-compose up
 
 #### Request from outside/internet
 
-Remember, GET is allowed from outside, but POST is not.
+Remember, GET is allowed from outside, but POST is not. Because of the self signed certificate `./traefik/cert`, we have to call curl with `--insecure` 
 
 ##### GET
 
@@ -62,9 +62,7 @@ curl --insecure -X POST https://dummyapi.docker.localhost
 
 We send the requests from the traefik container, but we need to install curl first.
 
-##### Install curl
-
-Because of the self signed certificate `./traefik/cert`, we have to call curl with `--insecure` 
+##### Add curl to the traefik container
 
 ```bash
 docker exec -it traefik apk add --update curl
